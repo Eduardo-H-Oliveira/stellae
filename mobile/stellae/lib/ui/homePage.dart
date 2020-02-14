@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   final _formKey = GlobalKey<FormState>();
 
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(
-            FontAwesomeIcons.userCircle,
+            FontAwesomeIcons.solidUserCircle,
             color: Colors.purple,
           ),
           title: Text(
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            FontAwesomeIcons.star,
+            FontAwesomeIcons.solidStar,
             color: Colors.purple,
           ),
           title: Text(
@@ -219,55 +219,74 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _viewRate() {
-    return Container(
-      padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
-      child: Center(
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: '@NomeDaPessoa',
-              ),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
-            ),
-            SizedBox(
-              height: 72.00,
-            ),
-            SmoothStarRating(
-                allowHalfRating: true,
-                starCount: 5,
-                rating: rating,
-                size: 48.0,
-                color: Colors.deepPurple,
-                borderColor: Colors.purple,
-                spacing: 0.0),
-            SizedBox(
-              height: 52.00,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: 'Mensagem(Opcional)',
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(32.0),
-              child: RaisedButton(
-                onPressed: () {
-                  // Validate will return true if the form is valid, or false if
-                  // the form is invalid.
-                  if (_formKey.currentState.validate()) {
-                    // Process data.
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                textAlign: TextAlign.center,
+                decoration: new InputDecoration(
+                  fillColor: Colors.black,
+                  border: new OutlineInputBorder(
+                    borderRadius: new BorderRadius.circular(25.0),
+                    borderSide: new BorderSide(),
+                  ),
+                  hintText: '@NomeDaPessoa',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
                   }
+                  return null;
                 },
-                child: Text('Avaliar'),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 120.00,
+              ),
+              SmoothStarRating(
+                  allowHalfRating: false,
+                  onRatingChanged: (v) {
+                    rating = v;
+                    setState(() {});
+                  },
+                  starCount: 5,
+                  rating: rating,
+                  size: 60.0,
+                  color: Colors.deepPurple,
+                  borderColor: Colors.purple,
+                  spacing: 0.0),
+              SizedBox(
+                height: 120.00,
+              ),
+              TextFormField(
+                textAlign: TextAlign.center,
+                decoration: new InputDecoration(
+                  fillColor: Colors.black,
+                  border: new OutlineInputBorder(
+                    borderRadius: new BorderRadius.circular(25.0),
+                    borderSide: new BorderSide(),
+                  ),
+                  hintText: 'Mensagem(Opcional)',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: FloatingActionButton(
+                  onPressed: () {
+                    // Validate will return true if the form is valid, or false if
+                    // the form is invalid.
+//                    if (_formKey.currentState.validate()) {
+//                      // Process data.
+//                    }
+                  },
+                  child: Icon(Icons.star),
+                  backgroundColor: Colors.purple,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -276,11 +295,7 @@ class _HomePageState extends State<HomePage> {
   Widget _viewNear() {
     return Center(
       child: Text("Proximos",
-          style: Theme
-              .of(context)
-              .textTheme
-              .display4
-              .copyWith(fontSize: 32.0)),
+          style: Theme.of(context).textTheme.display4.copyWith(fontSize: 32.0)),
     );
   }
 
@@ -291,18 +306,22 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             Text("Sobre",
-                style: Theme
-                    .of(context)
+                style: Theme.of(context)
                     .textTheme
-                    .display1
-                    .copyWith(fontSize: 32.0)),
+                    .display2
+                    .copyWith(fontSize: 32.0, color: Colors.black)),
+            SizedBox(
+              height: 32.00,
+            ),
             Text(
-                "Stellae é um aplicativo com o intuito de avalição entre usuários, cada usuario pode dar de 0 até 5 estrelas para o outro.",
-                style: Theme
-                    .of(context)
+                "Stellae é um aplicativo com o intuito de avalição entre usuários, "
+                "cada usuário pode dar uma avaliação de 0 até 5 estrelas para o perfil de outro.\n\n"
+                "Embarque nessa aventura e descubra o que as pessoas pensam de você.",
+                textAlign: TextAlign.justify,
+                style: Theme.of(context)
                     .textTheme
-                    .display4
-                    .copyWith(fontSize: 32.0)),
+                    .display3
+                    .copyWith(fontSize: 32.0, color: Colors.black87)),
           ],
         ),
       ),

@@ -12,6 +12,25 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+class Success extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Stellae"),
+      ),
+      body: Center(
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back),
+        ),
+      ),
+    );
+  }
+}
+
 class _HomePageState extends State<HomePage> {
   var rating = 5.0;
   int selectedPos = 0;
@@ -275,6 +294,10 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(32.0),
                 child: FloatingActionButton(
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Success()),
+                    );
                     // Validate will return true if the form is valid, or false if
                     // the form is invalid.
 //                    if (_formKey.currentState.validate()) {

@@ -1,2 +1,2 @@
 # stellae
-APP demo for study
+A demo project for Training Team 

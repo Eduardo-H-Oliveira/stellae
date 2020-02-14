@@ -8,27 +8,9 @@ class HomePage extends StatefulWidget {
 
   HomePage(this.title, {Key key}) : super(key: key);
 
+
   @override
   _HomePageState createState() => _HomePageState();
-}
-
-class Success extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Stellae"),
-      ),
-      body: Center(
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.arrow_back),
-        ),
-      ),
-    );
-  }
 }
 
 class _HomePageState extends State<HomePage> {
@@ -296,7 +278,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Success()),
+                      MaterialPageRoute(builder: (context) => _viewMain()),
                     );
                     // Validate will return true if the form is valid, or false if
                     // the form is invalid.
